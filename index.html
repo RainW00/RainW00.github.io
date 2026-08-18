@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rainw00 的个人空间</title>
+  <style>
+    :root {
+      --bg-1: #0f172a;
+      --bg-2: #1e293b;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --text: #e2e8f0;
+      --text-dim: #94a3b8;
+      --card: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Microsoft YaHei", sans-serif;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(1000px 600px at 85% 10%, rgba(129, 140, 248, 0.25), transparent 60%),
+        radial-gradient(800px 500px at 10% 90%, rgba(56, 189, 248, 0.18), transparent 60%),
+        linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: min(920px, 90%);
+      padding: 72px 0 48px;
+    }
+
+    /* 头部 */
+    header { text-align: center; margin-bottom: 56px; }
+
+    .avatar {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 10px 40px rgba(56, 189, 248, 0.35);
+    }
+
+    header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    header p {
+      margin-top: 12px;
+      color: var(--text-dim);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* 项目卡片 */
+    .projects-title {
+      font-size: 15px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 28px 30px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 16px 48px rgba(56, 189, 248, 0.18);
+    }
+
+    .card-icon {
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .card-body h3 {
+      font-size: 19px;
+      margin-bottom: 6px;
+    }
+
+    .card-body p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .card-body .badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .card-arrow {
+      margin-left: auto;
+      font-size: 22px;
+      color: var(--text-dim);
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+
+    .card:hover .card-arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    /* 底部 */
+    footer {
+      margin-top: 56px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .card { flex-direction: column; text-align: center; gap: 16px; }
+      .card-arrow { display: none; }
+      header h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar">R</div>
+      <h1>rainw00 的个人空间</h1>
+      <p>记录有趣的想法、工具与小项目 · Welcome to my little corner of the internet</p>
+    </header>
+
+    <div class="projects-title">— 我的项目 —</div>
+
+    <a class="card" href="https://rainw00.github.io/remotesenseai/">
+      <div class="card-icon">🛰️</div>
+      <div class="card-body">
+        <h3>遥感目标检测</h3>
+        <p>基于 AI 的遥感影像目标检测工具，上传遥感图片即可自动识别目标并生成分析报告。</p>
+        <span class="badge">AI 工具</span>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <footer>
+      <p>© 2026 rainw00 · Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></p>
+    </footer>
+  </div>
+</body>
+</html>
