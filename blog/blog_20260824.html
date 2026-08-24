@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>做了个好玩的AI网站 · rainw00 的个人空间</title>
+  <style>
+    :root {
+      --bg-1: #0f172a;
+      --bg-2: #1e293b;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --text: #e2e8f0;
+      --text-dim: #94a3b8;
+      --card: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Microsoft YaHei", sans-serif;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(1000px 600px at 85% 10%, rgba(129, 140, 248, 0.25), transparent 60%),
+        radial-gradient(800px 500px at 10% 90%, rgba(56, 189, 248, 0.18), transparent 60%),
+        linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      line-height: 1.8;
+    }
+
+    .container {
+      width: min(760px, 90%);
+      margin: 0 auto;
+      padding: 56px 0 72px;
+    }
+
+    /* 返回链接 */
+    .back-link {
+      display: inline-block;
+      margin-bottom: 32px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.25s ease;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* 文章头 */
+    .post-header {
+      margin-bottom: 40px;
+    }
+    .post-header h1 {
+      font-size: 30px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+    .post-date {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--accent);
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* 文章正文 */
+    .post-body {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 36px 38px;
+      backdrop-filter: blur(10px);
+    }
+
+    .post-body h2 {
+      font-size: 20px;
+      margin: 30px 0 14px;
+      padding-left: 12px;
+      border-left: 4px solid var(--accent);
+    }
+    .post-body h2:first-child { margin-top: 0; }
+
+    .post-body p {
+      font-size: 15px;
+      color: #cbd5e1;
+      margin-bottom: 14px;
+    }
+
+    .post-body a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(56, 189, 248, 0.5);
+    }
+    .post-body a:hover { border-bottom-style: solid; }
+
+    .post-body s { color: var(--text-dim); }
+
+    .post-body strong { color: #fff; }
+
+    /* 底部 */
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .post-header h1 { font-size: 24px; }
+      .post-body { padding: 24px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="../index.html">← 返回首页</a>
+
+    <div class="post-header">
+      <h1>做了个好玩的AI网站</h1>
+      <span class="post-date">编写日期：2026-08-24</span>
+    </div>
+
+    <div class="post-body">
+      <h2>引言</h2>
+      <p>前两天被上次参加的XJTU AI夏令营叫来线上集训了。选的计算机视觉课题。发现百度有个很有意思的可自己训练的基于YOLO V5的目标检测AI，自己到网上下了DOTA数据库，开始训练了，然后就写了一个好玩的AI网站出来。</p>
+
+      <h2>训练</h2>
+      <p>数据集没啥好说的，下的DOTA V1.5。但是这玩意他标注格式还是自定义的，我vibecoding了一下午用Python把他自定义的神秘标注格式改成了能用的json。结果上传的时候悲剧了。几十个GB的文件本来就不好上传，家里网还被电信限了。于是跑到营业厅蹭网，营业厅的网很快。上完了，结果还是提示我标注不对。定睛一看，完犊子了，得重新上传。（被Deepseek V4 Flash坑了），看了官方文档，原来是要把所有json文件合成一个。于是，在我又vibecoding了一段时间之后，终于，Deepseek这条蓝色，爱吃我token的大肥鱼，给我生成了一个更加简单粗暴的Python文件。跑完之后一看新生成的json文件，好家伙，400000多行，真算得上是史山代码。不过重新上传之后，这玩意好了，能用了。具体数据还挺不错。我想着也不用迭代了，反正就是写着练手。我反手把模型一发布，API KEY到手，准备写网页代码。</p>
+
+      <h2>编程</h2>
+      <p>正常写一个能用，外观美观的网站至少要数周。但是在<s>蓝色大肥鱼</s>Deepseek V4 Flash的帮助下，我只vibecoding了一天就把功能完善了。我想再加一点功能，加点什么呢？有了。加一个让AI自动分析图片检测报告与战略价值分析的功能好了。但是用什么AI呢？那必然是我冲了30块钱（<s>现在涨价了</s>）的<s>蓝色大肥鱼</s>：<strong>Deepseek V4 Flash!</strong>（<s>Deepseek V4 Flash：你得是把我当黑奴用呢，一边Vibecoding给我提各种离谱需求，一边又要叫我分析你那个破网站，我谢谢你嗷！</s>）</p>
+
+      <h2>调校</h2>
+      <p>但是我不是说了吗，我的模型没有迭代，于是我灵光一现：解决不了问题，就解决提出问题的人。我反手把Large_vehicle和Small_vehicle合并成了一个：vehicle!然后如法炮制，把Airplane和Helicopter合并成了一个：Plane! 那剩下的判断不准确的咋办呢？那当然是删掉了。我都把问题删掉了，总不可能再出问题了吧。于是我打手一挥，将Container_crane和Roundabout删掉了。这下就不可能出问题了。</p>
+
+      <h2>特色</h2>
+      <p>那必然是你D老师一本正经的分析战略报告了。不过你别说，你还真别说，你D老师依旧稳定发挥，还真的有用。<s>解决了你D老师没有眼睛的问题</s></p>
+
+      <h2>发布</h2>
+      <p>其实一开始没打算部署在公网上的。一直以来都是一个Python脚本开localhost端口，在本地访问的。但是想到如果很多人用就要把这个项目的zip分发给一堆人，想想还是挺麻烦的。于是我把他部署到了Github Pages上面。那么这时候就有人要问了："那你在公网上是怎么解决CORS 跨域限制的呢？"很简单。把我的server.py一改，扔到腾讯Cloudbase上面整个云函数一分发，还顺便把我API KEY隐藏了。这下绝对没人知道我API KEY了。</p>
+
+      <h2>访问</h2>
+      <p>说了这么多，该谈点实际的了。那我直接说了。网站在 <a href="https://rainw00.github.io/remotesenseai" target="_blank" rel="noopener">rainw00.github.io/remotesenseai</a></p>
+      <p>欢迎大家访问，欢迎大家<s>挑刺</s>给我提出建议。</p>
+      <p>有任何建议或问题直接发邮件到 rainwulittlecat@outlook.com，我基本都会回应的。</p>
+    </div>
+
+    <footer>
+      <p>© 2026 rainw00 · <a href="../index.html">返回首页</a> · Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></p>
+    </footer>
+  </div>
+</body>
+</html>
